@@ -1,0 +1,25 @@
+{
+  "name": "todoapp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fluentui/react": "^8.106.9",
+    "@fluentui/react-hooks": "^8.6.20",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tachyons": "^4.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  }
+}
