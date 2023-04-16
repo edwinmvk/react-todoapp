@@ -1,9 +1,10 @@
 .App{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    overflow-x: hidden;
-    background-color:#f0f8ffde;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  width: 80%;
+  overflow-x: hidden;
+  background-color:#e9e6cdde;
+}

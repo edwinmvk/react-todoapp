@@ -18,7 +18,7 @@ const App= ()=> {
     }
     
     return(
-    <div className= 'App tc br4 shadow-2' style= {{ height: "70%" }}>
+    <div className= 'App tc br4 shadow-2'>
         <Provider>
             <header className= 'f2 b courier white bg-navy'>ToDo List</header>
             <div className= 'ma2'>
