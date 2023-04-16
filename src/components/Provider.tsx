@@ -43,32 +43,8 @@ const reducer= (state: IStateDT, action: any)=> {
 const activeTaskList: IEachTaskDT[]= [
     {
         id: "1",
-        title: "Task 1",
-        description: "This is description 1",
-        isChecked: false
-    },
-    {
-        id: "2",
-        title: "Task 2",
-        description: "This is description 2",
-        isChecked: false
-    },
-    {
-        id: "3",
-        title: "Task 3",
-        description: "This is description 3",
-        isChecked: false
-    },
-    {
-        id: "4",
-        title: "Task 4",
-        description: "This is description 4",
-        isChecked: false
-    },
-    {
-        id: "5",
-        title: "Task 5",
-        description: "This is description 5",
+        title: "Sample task",
+        description: "This is description of sample task",
         isChecked: false
     }
 ]
