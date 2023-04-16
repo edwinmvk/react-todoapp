@@ -23,17 +23,14 @@ const App= ()=> {
             <header className= 'f2 b courier white bg-navy'>ToDo List</header>
             <div className= 'ma2'>
                 <Pivot onLinkClick= {(item?: PivotItem)=> { // ? means that on clicking link, if there an item, it represents pivot item, Else it will represent no value or 'UNDEFINED'. But the function still runs
-                    setKey(item?.props.itemKey || "1");  // if there is no selected key item, then the default value will be "0" 
+                    setKey(item?.props.itemKey || "1");  // if there is no selected key item, then the default value will be "1" 
                 }} selectedKey= {key} >
                     <PivotItem headerText= "Active Tasks" itemKey= "0">
                         <ActiveTasks onClickEdit= {jumpUpdatedTask} />
                     </PivotItem>
                     <PivotItem headerText= "New Task" itemKey= "1">
-                        <NewTask updateTaskId= {editTaskId}/>
+                        <NewTask updateTaskId= {editTaskId} resetTaskId= {setEditTaskId}/>
                     </PivotItem>
-                    {/* <PivotItem headerText= "Completed" itemKey="2">
-                        <Label>Pivot #2</Label>
-                    </PivotItem> */}
                 </Pivot>
             </div>
         </Provider>

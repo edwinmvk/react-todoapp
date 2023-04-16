@@ -4,13 +4,15 @@ import { TodoContext } from './Provider';
 
 type Props= {
     updateTaskId: string | null;
+    resetTaskId: any
 }
 
-const NewTask = ({updateTaskId}: Props) => {
+const NewTask = ({ updateTaskId, resetTaskId }: Props) => {
     const { sendactiveTaskInfo, dispatch }= useContext(TodoContext);
     const [title, setTitle]= useState<string>("");
     const [description, setDescription]= useState<string>("");
-    const [showMsg, setShowMsg]= useState<boolean>(false);
+    const [showAddMsg, setShowAddMsg]= useState<boolean>(false);
+    const [showUpdateMsg, setShowUpdateMsg]= useState<boolean>(false);
 
     useEffect(()=> {
         if(updateTaskId){
@@ -21,12 +23,17 @@ const NewTask = ({updateTaskId}: Props) => {
     }, [updateTaskId])
 
     useEffect(()=> {
-        if(showMsg){
+        if(showAddMsg){
             setTimeout(()=> {
-                setShowMsg(false)
+                setShowAddMsg(false)
             }, 1000)
         }
-    }, [showMsg])
+        if(showUpdateMsg){
+            setTimeout(()=> {
+                setShowUpdateMsg(false)
+            }, 1000)
+        }
+    }, [showAddMsg, showUpdateMsg])
 
     const onTitleChange= (event: any)=>{
         setTitle(event.target.value)
@@ -36,19 +43,25 @@ const NewTask = ({updateTaskId}: Props) => {
         setDescription(event.target.value)
     }
 
-    const onFormSubmit= (event: any)=> {  // its real type is event: React.FormEvent
-        event.preventDefault(); // refreshing page will be stopped
-        updateTaskId? UpdateTaskAction(): addTaskAction();
-    }
-
     const addTaskAction= ()=> {
-        dispatch({ type: "add", data: {id: "", title: title, description: description, isFav: false} }) // here, using dispatch, we are putting new info to the object, whose property in 'data'
-        setShowMsg(true)
+        dispatch({ type: "add", data: { id: "", title: title, description: description, isChecked: false}}) // here, using dispatch, we are putting new info to the object, whose property in 'data'
+        setShowAddMsg(true)
+        setTitle("")    
+        setDescription("")
+        
     }
 
     const UpdateTaskAction= ()=> {
-        dispatch({ type: "update", data: {id: updateTaskId || "", title: title, description: description, isFav: false} }) 
-        setShowMsg(true)
+        dispatch({ type: "update", data: { id: updateTaskId || "", title: title, description: description, isChecked: false} }) 
+        setShowUpdateMsg(true)
+        resetTaskId(null)   // if this is done the app will always be in update mode
+        setTitle("")    
+        setDescription("")
+    }
+
+    const onFormSubmit= (event: any)=> {  // its real type is event: React.FormEvent
+        event.preventDefault(); // refreshing page will be stopped
+        updateTaskId? UpdateTaskAction(): addTaskAction();
     }
 
     return(
@@ -59,7 +72,8 @@ const NewTask = ({updateTaskId}: Props) => {
             </div>
             <div className= 'flex mt2'>
                 <PrimaryButton text= {updateTaskId? "Update task": "Add Task" } type= "submit" className= "mr3 w-20 "/>
-                { showMsg && (<MessageBar messageBarType= {MessageBarType.success} className= "w-80">Task added</MessageBar>)}  {/* && means that this MessageBar will be displayed only when it is true */}
+                { showAddMsg && (<MessageBar messageBarType= {MessageBarType.success} className= "w-80">Task added</MessageBar>)}  {/* && means that this MessageBar will be displayed only when it is true */}
+                { showUpdateMsg && (<MessageBar messageBarType= {MessageBarType.success} className= "w-80">Task updated</MessageBar>)}
             </div>
         </form>
     );

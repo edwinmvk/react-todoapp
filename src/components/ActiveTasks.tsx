@@ -24,10 +24,15 @@ const ActiveTasks= ({onClickEdit}: Props)=> {
     const { sendactiveTaskInfo, dispatch }= useContext(TodoContext);
 
     const onRenderTask= (obj: IEachTaskDT)=> {
+        const onChangeCheckbox = () => {
+            obj.isChecked = !obj.isChecked;
+            dispatch({ type: 'update', data: obj });    // we dont need special check case in dispatch function, since it is same as update
+        }
+
         return <>
             <div key= {obj.id} className= 'ma3 pa3 flex items-center justify-between h2 b near-black bg-light-gray shadow-1 dim'>
                 <div className= 'flex'>
-                    {/* <Checkbox/> */}
+                    <Checkbox checked={obj.isChecked} onChange={onChangeCheckbox}/>
                     {obj.title}
                 </div>
                 <div className= 'flex'>
@@ -38,7 +43,7 @@ const ActiveTasks= ({onClickEdit}: Props)=> {
             </div>
         </>
     }
-    
+
     const onClickDelete= (id: string)=> {
         if(window.confirm("Are you sure you want to delete"))
             dispatch({ type: "delete", data: {id} })
