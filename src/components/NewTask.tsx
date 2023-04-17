@@ -67,7 +67,7 @@ const NewTask = ({ updateTaskId, resetTaskId }: Props) => {
     return(
         <form className= 'tl flex flex-column mh3' onSubmit= {onFormSubmit}>
             <div>
-                <TextField style= {{fontSize: 20}} label= "Title" required value= {title} onChange= {onTitleChange}/>
+                <TextField style= {{fontSize: 20}} label= "Title (max char: 15)" required value= {title} maxLength= {15} onChange= {onTitleChange}/>
                 <TextField style= {{fontSize: 15}} label= "Description" value= {description} multiline rows= {20} resizable= {false} onChange= {onDescriptionChange}/>
             </div>
             <div className= 'flex justify-between mt3'>
