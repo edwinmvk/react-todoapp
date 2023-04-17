@@ -3,8 +3,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 90%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   overflow-x: hidden;
   background-color:#e9e6cdde;
 }

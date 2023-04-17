@@ -8,9 +8,9 @@ type Props= {              // This is the way to recieve the props in the child 
     sendobj: IEachTaskDT   // Sending the props from the parent component is same as Java Script
 }
 
-const DescriptionToHome = ({sendobj}: Props) => {
+const DescriptionToActiveTasks = ({sendobj}: Props) => {
     const buttonId = useId('targetButton');
-    const [teachingBubbleVisible, setTeachingBubbleVisible] = useState(false);
+    const [teachingBubbleVisible, setTeachingBubbleVisible]= useState(false);
     return (
         <div>
             <FontIcon id= {buttonId} iconName= "Info" onClick= {sendobj.description? ()=> setTeachingBubbleVisible(true): ()=>{}} className={ sendobj.description? iconStyles.style1: mergeStyles(iconStyles.style1, iconStyles.disabled)}/>
@@ -27,4 +27,4 @@ const DescriptionToHome = ({sendobj}: Props) => {
     );
 };
 
-export default DescriptionToHome;
+export default DescriptionToActiveTasks;

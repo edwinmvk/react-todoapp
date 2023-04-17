@@ -15,7 +15,7 @@ const NewTask = ({ updateTaskId, resetTaskId }: Props) => {
     const [showUpdateMsg, setShowUpdateMsg]= useState<boolean>(false);
 
     useEffect(()=> {
-        if(updateTaskId){
+        if(updateTaskId){   // this function actually performs the role of setFields function in a form
             const updatedObject= sendactiveTaskInfo.find(obj=> { return obj.id === updateTaskId })
             setTitle(updatedObject?.title || "");
             setDescription(updatedObject?.description || "");
@@ -26,7 +26,7 @@ const NewTask = ({ updateTaskId, resetTaskId }: Props) => {
         if(showAddMsg){
             setTimeout(()=> {
                 setShowAddMsg(false)
-            }, 1000)
+            }, 1500)
         }
         if(showUpdateMsg){
             setTimeout(()=> {
@@ -61,19 +61,19 @@ const NewTask = ({ updateTaskId, resetTaskId }: Props) => {
 
     const onFormSubmit= (event: any)=> {  // its real type is event: React.FormEvent
         event.preventDefault(); // refreshing page will be stopped
-        updateTaskId? UpdateTaskAction(): addTaskAction();
+        updateTaskId? UpdateTaskAction(): addTaskAction();  // this means that when clicking the submit button, either of the function executes
     }
 
     return(
-        <form className= 'tl flex flex-column' onSubmit={onFormSubmit}>
+        <form className= 'tl flex flex-column mh3' onSubmit= {onFormSubmit}>
             <div>
-                <TextField className= 'h-20' label= "Title" required value= {title} onChange= {onTitleChange}/>
-                <TextField className= 'h-80' label= "Description" multiline rows= {7} resizable= {false} value= {description} onChange= {onDescriptionChange}/>
+                <TextField style= {{fontSize: 20}} label= "Title" required value= {title} onChange= {onTitleChange}/>
+                <TextField style= {{fontSize: 15}} label= "Description" value= {description} multiline rows= {20} resizable= {false} onChange= {onDescriptionChange}/>
             </div>
-            <div className= 'flex mt2'>
-                <PrimaryButton text= {updateTaskId? "Update task": "Add Task" } type= "submit" className= "mr3 w-20 "/>
-                { showAddMsg && (<MessageBar messageBarType= {MessageBarType.success} className= "w-80">Task added</MessageBar>)}  {/* && means that this MessageBar will be displayed only when it is true */}
-                { showUpdateMsg && (<MessageBar messageBarType= {MessageBarType.success} className= "w-80">Task updated</MessageBar>)}
+            <div className= 'flex justify-between mt3'>
+                <PrimaryButton text= {updateTaskId? "Update task": "Add Task" } type= "submit" className= "w-20"/>
+                { showAddMsg && (<MessageBar messageBarType= {MessageBarType.success} className= "w-70">Task added</MessageBar>)}  {/* && means that this MessageBar will be displayed only when it is true */}
+                { showUpdateMsg && (<MessageBar messageBarType= {MessageBarType.success} className= "w-70">Task updated</MessageBar>)}
             </div>
         </form>
     );
