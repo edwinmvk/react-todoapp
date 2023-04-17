@@ -1,6 +1,8 @@
 <h1 align="center">ToDo App</h1>
 <p>
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+    <a href="#" target="_blank">
+        <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+    </a>
 </p>
 
 ## Introduction
@@ -45,21 +47,21 @@ This will compile the TypeScript code and generate a production-ready build of t
 
 The ToDo App has the following dependencies:
 
-@fluentui/react - Fluent UI React components
-@fluentui/react-hooks - Fluent UI React hooks
-react - React library
-react-dom - React DOM library
-tachyons - Tachyons CSS library
+* @fluentui/react - Fluent UI React components
+* @fluentui/react-hooks - Fluent UI React hooks
+* react - React library
+* react-dom - React DOM library
+* tachyons - Tachyons CSS library
 
 ## Dev Dependencies
 
 The ToDo App has the following dev dependencies:
 
-@types/react - TypeScript types for React
-@types/react-dom - TypeScript types for React DOM
-@vitejs/plugin-react - Vite plugin for React
-typescript - TypeScript compiler
-vite - Vite build tool
+* @types/react - TypeScript types for React
+* @types/react-dom - TypeScript types for React DOM
+* @vitejs/plugin-react - Vite plugin for React
+* typescript - TypeScript compiler
+* vite - Vite build tool
 
 ## License
 
