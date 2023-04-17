@@ -25,7 +25,7 @@ const ActiveTasks= ({onClickEdit}: Props)=> {
 
     const onRenderTask= (obj: IEachTaskDT)=> {
         return(
-            <div key= {obj.id} className= 'ma3 ph3 flex items-center justify-between h3 b near-black bg-light-gray shadow-1 dim'>
+            <div key= {obj.id} className= 'ma3 ph3 flex items-center justify-between h3 b near-black bg-light-gray shadow-5'>
                 <div className= 'flex'>
                     <Checkbox checked= {obj.isChecked} onChange= {()=> onChangeCheckbox(obj)}/>
                     {obj.title}
