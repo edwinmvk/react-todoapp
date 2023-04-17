@@ -21,8 +21,8 @@ Before running this project, make sure you have the following software installed
 To get started with the ToDo App, you will need to clone this repository and install the dependencies. You can do this by running the following commands in your terminal:
 
 ```sh
-git clone https://github.com/emvk09/ToDo-App.git
-cd ToDo-App
+git clone https://github.com/emvk09/react-todoapp.git
+cd react-todoapp
 pnpm install
 ```
 ## Usage
