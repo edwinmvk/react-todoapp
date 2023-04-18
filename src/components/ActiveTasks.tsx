@@ -20,46 +20,66 @@ type Props= {
     onClickEdit: (taskidtoupdate: string) => void  // this means that onClickEdit is a function that takes one argument 'taskidtoupdate' which is a string and returns nothing
 }
 
-const ActiveTasks= ({onClickEdit}: Props)=> {
-    const { sendactiveTaskInfo, dispatch }= useContext(TodoContext);
+const ActiveTasks = ({ onClickEdit }: Props) => {
+  const { sendactiveTaskInfo, dispatch } = useContext(TodoContext);
 
-    const onRenderTask= (obj: IEachTaskDT)=> {
-        return(
-            <div key= {obj.id} className= 'ma3 ph3 flex items-center justify-between h3 b near-black bg-light-gray shadow-5'>
-                <div className= 'flex'>
-                    <Checkbox checked= {obj.isChecked} onChange= {()=> onChangeCheckbox(obj)}/>
-                    {obj.title}
-                </div>
-                <div className= 'flex'>
-                    <DescriptionToActiveTasks sendobj= {obj}/>
-                    <FontIcon iconName= "EditNote" className= { obj.isChecked? mergeStyles(iconStyles.style1, iconStyles.disabled) : iconStyles.style1 } onClick= {obj.isChecked? ()=> {} : ()=> onClickEdit(obj.id)} />
-                    <FontIcon iconName= "Delete" className= { iconStyles.style1 } onClick= {()=> onClickDelete(obj.id)}/>
-                </div>
-            </div>
-        )
-    }
+  const completedTasks = sendactiveTaskInfo.filter((task) => task.isChecked);
+  const activeTasks = sendactiveTaskInfo.filter((task) => !task.isChecked);
 
-    const onChangeCheckbox= (obj: IEachTaskDT)=> {
-        obj.isChecked= !obj.isChecked;
-        dispatch({ type: 'update', data: obj });    // we dont need special check case in dispatch function, since it is same as update
-    }
-
-    const onClickDelete= (id: string)=> {
-        if(window.confirm("Are you sure you want to delete"))
-            dispatch({ type: "delete", data: {id} })
-    }
-
-    return(
-        <div className= 'tl'>
-            {sendactiveTaskInfo.map( onRenderTask )}
-
-            {/* {activeTaskList.map((obj)=> {
-                return <>
-                    <div key= {obj.id}>{obj.title}</div>
-                </>
-            })} */}
+  const onRenderTask = (obj: IEachTaskDT) => {
+    const titleStyle = obj.isChecked ? { textDecoration: "line-through" } : {};
+    return (
+      <div
+        key={obj.id}
+        className="ma3 ph3 flex items-center justify-between h3 b near-black bg-light-gray shadow-5"
+      >
+        <div className="flex">
+          <Checkbox
+            checked={obj.isChecked}
+            onChange={() => onChangeCheckbox(obj)}
+          />
+          <span style={titleStyle}>{obj.title}</span>
         </div>
-    )
-}
+        <div className="flex">
+          <DescriptionToActiveTasks sendobj={obj} />
+          <FontIcon
+            iconName="EditNote"
+            className={
+              obj.isChecked
+                ? mergeStyles(iconStyles.style1, iconStyles.disabled)
+                : iconStyles.style1
+            }
+            onClick={obj.isChecked ? () => {} : () => onClickEdit(obj.id)}
+          />
+          <FontIcon
+            iconName="Delete"
+            className={iconStyles.style1}
+            onClick={() => onClickDelete(obj.id)}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const onChangeCheckbox = (obj: IEachTaskDT) => {
+    obj.isChecked = !obj.isChecked;
+    dispatch({ type: "update", data: obj });
+  };
+
+  const onClickDelete = (id: string) => {
+    if (window.confirm("Are you sure you want to delete"))
+      dispatch({ type: "delete", data: { id } });
+  };
+
+  return (
+    <div className="tl">
+      {activeTasks.map(onRenderTask)}
+      {completedTasks.length > 0 && <h2>Completed tasks</h2>}
+      {completedTasks.map(onRenderTask)}
+    </div>
+  );
+};
+
 
 export default ActiveTasks;
+
